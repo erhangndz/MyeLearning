@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminHead")
+
+<body class="fix-header fix-sidebar card-no-border">
+   
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    
+    <div id="main-wrapper">
+
+        @await Component.InvokeAsync("_AdminNavbar")
+        
+     @await Component.InvokeAsync("_AdminSidebar")
+       
+        <div class="page-wrapper">
+           
+            <div class="container-fluid">
+               
+                <div class="row">
+                    <div class="col-12">
+                        @RenderBody()
+                    </div>
+                </div>
+               
+            </div>
+            
+            <footer class="footer">
+                © @DateTime.Now.Year eLearning Admin Paneli
+            </footer>
+           
+        </div>
+       
+    </div>
+    
+    @await Component.InvokeAsync("_AdminScripts")
+</body>
+
+</html>
