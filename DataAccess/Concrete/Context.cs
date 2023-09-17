@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyeLearningProject.DAL.Entities;
+using Entity.Models;
 
-namespace MyeLearningProject.DAL.Context
+namespace DataAccess.Concrete
 {
     public class Context:DbContext
     {
@@ -13,5 +13,9 @@ namespace MyeLearningProject.DAL.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<AboutUs> AboutUses { get; set; }
+        public DbSet<Banner> Banners { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Service> Services { get; set; }
     }
 }

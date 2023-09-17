@@ -1,4 +1,4 @@
-﻿namespace MyeLearningProject.DAL.Entities
+﻿namespace Entity.Models
 {
     public class Testimonial
     {

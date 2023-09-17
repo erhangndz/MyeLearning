@@ -1,4 +1,4 @@
-﻿@using MyeLearningProject.DAL.Entities;
+﻿@using Entity.Models;
 @model List<Category>
 @{
     ViewData["Title"] = "Index";
@@ -22,12 +22,13 @@
         <div class="card-block">
             <h4 class="card-title">Kategoriler</h4>
           
-            <div class="table-responsive">
+            <div class="table table-hover">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Kategori Adı</th>
+                            <th></th>
                             
                         </tr>
                     </thead>
@@ -39,6 +40,10 @@
                         <tr>
                             <td>@count</td>
                             <td>@item.CategoryName</td>
+                            <td>
+                                <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId" class="btn btn-outline-danger">Sil</a>
+                                <a asp-action="EditCategory" asp-route-id="@item.CategoryId" class="btn btn-outline-primary">Düzenle</a>
+                            </td>
                            
                         </tr>
                         }
@@ -47,4 +52,6 @@
             </div>
         </div>
     </div>
+    <a href="/Category/AddCategory" class="btn btn-outline-primary">Yeni Kategori Ekle</a>
 </div>
+

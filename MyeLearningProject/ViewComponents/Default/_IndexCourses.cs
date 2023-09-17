@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.ViewComponents.Default
 {
-    public class _IndexSlider:ViewComponent
+    public class _IndexCourses:ViewComponent
     {
-        private readonly IGenericService<Banner> _bannerService;
+        private readonly ICourseService _courseService;
 
-        public _IndexSlider(IGenericService<Banner> bannerService)
+        public _IndexCourses(ICourseService courseService)
         {
-            _bannerService = bannerService;
+            _courseService = courseService;
         }
 
         public IViewComponentResult Invoke()
         {
-            var values = _bannerService.GetList();
+            var values = _courseService.GetAll();
             return View(values);
         }
     }
