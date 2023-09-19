@@ -54,6 +54,7 @@ namespace MyeLearningProject.Controllers
         [HttpPost]
         public IActionResult AddCategory(Category category)
         {
+            category.Status = true;
             _categoryService.Insert(category);
             return RedirectToAction("Index");
         }

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Kurslarımız";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<!-- Header Start -->
+<div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white animated slideInDown">Kurslarımız</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a class="text-white" href="/Default/Index">Ana Sayfa</a></li>
+
+                        <li class="breadcrumb-item text-white active" aria-current="page">Kurslarımız</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+@await Component.InvokeAsync("_IndexCategories")
+
+@await Component.InvokeAsync("_IndexCourses")
+
+@await Component.InvokeAsync("_IndexTestimonial")

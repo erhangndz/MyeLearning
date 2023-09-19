@@ -1,0 +1,64 @@
+﻿@using Entity.Models;
+@model Course
+@{
+    ViewData["Title"] = "AddCourse";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Kurs Ekleme Sayfası</h3>
+
+    </div>
+
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-block">
+
+
+            <form method="post">
+
+                <label>Kurs Adı</label>
+                <br />
+                <input type="text" asp-for="CourseName" class="form-control" />
+                <br />
+                <label>Kategori</label>
+                <br />
+                @Html.DropDownListFor(x=>x.CategoryId, (List<SelectListItem>)ViewBag.category, new {@class="form-control"})
+                <br />
+                <label>Eğitmen</label>
+                <br />
+                @Html.DropDownListFor(x=>x.InstructorId, (List<SelectListItem>)ViewBag.instructor, new {@class="form-control"})
+                <br />
+                <label>Görsel Url</label>
+                <br />
+                <input type="text" asp-for="Image" class="form-control" />
+                <br />
+                <label>Değerlendirme Puanı (1-5)</label>
+                <br />
+                <input type="number" asp-for="Review" class="form-control" />
+                <br />
+                <label>Fiyat ₺</label>
+                <br />
+                <input type="text" asp-for="Price" class="form-control" />
+                <br />
+                <label>Kontenjan</label>
+                <br />
+                <input type="number" asp-for="Quota" class="form-control" />
+                <br />
+                <label>Kurs Süresi (Saat)</label>
+                <br />
+                <input type="number" asp-for="CourseTime" class="form-control" />
+                <br />
+                <br />
+                <button class="btn btn-outline-primary">Kaydet</button>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
+

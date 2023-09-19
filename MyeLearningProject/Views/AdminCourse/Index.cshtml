@@ -1,18 +1,19 @@
 ﻿@using Entity.Models;
-@model List<Category>
+@model List<Course>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor m-b-0 m-t-0">Kategoriler</h3>
-       
+        <h3 class="text-themecolor m-b-0 m-t-0">Kurslar</h3>
+
     </div>
-   
+
 </div>
 
 @{
@@ -22,16 +23,19 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-block">
-            <h4 class="card-title">Kategoriler</h4>
-          
+            <h4 class="card-title">Kurslar</h4>
+
             <div class="table table-hover">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Kategori Adı</th>
+                            <th>Kurs Adı</th>
+                            <th>Fiyatı</th>
+                            <th>Kategorisi</th>
+                            <th>Eğitmeni</th>
                             <th></th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -39,29 +43,33 @@
                         {
                             count++;
 
-                        <tr>
-                            <td>@count</td>
-                            <td>@item.CategoryName</td>
-                            <td>
-                                <button onclick="deleteCategory(@item.CategoryId)" type="submit" class="btn btn-outline-danger">Sil</button>
-                                <a asp-action="EditCategory" asp-route-id="@item.CategoryId" class="btn btn-outline-primary">Düzenle</a>
-                            </td>
-                           
-                        </tr>
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.CourseName</td>
+                                <td>@item.Price ₺</td>
+                                <td>@item.Category.CategoryName</td>
+                                <td>@item.Instructor.Name @item.Instructor.Surname</td>
+                                <td>
+                                    <button onclick="deleteCourse(@item.CourseId)" type="submit" class="btn btn-outline-danger">Sil</button>
+                                    <a asp-action="EditCourse" asp-route-id="@item.CourseId" class="btn btn-outline-primary">Düzenle</a>
+                                </td>
+
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <a href="/Category/AddCategory" class="btn btn-outline-primary">Yeni Kategori Ekle</a>
+    <a href="/AdminCourse/AddCourse" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
 </div>
 
 
+
 <script>
-    function deleteCategory(id) {
+    function deleteCourse(id) {
         Swal.fire({
-          
+
             title: 'Silmek istediğinize emin misiniz?',
             text: 'Bu öğeyi silerseniz geri alamazsınız!',
             icon: 'warning',
@@ -70,7 +78,7 @@
             cancelButtonText: 'İptal'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "/Category/DeleteCategory?id=" + id; // Yönlendirilecek URL'yi buraya yazın
+                window.location.href = "/AdminCourse/DeleteCourse?id=" + id; // Yönlendirilecek URL'yi buraya yazın
             }
         });
     }

@@ -1,0 +1,54 @@
+﻿@using Entity.Models;
+@model Message
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+    <form method="post" asp-action="SendMessage" asp-controller="Contact"> 
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Name" placeholder="Adınız">
+                    <label for="name">Adınız</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email Adresiniz">
+                    <label for="email">Email Adresiniz</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Subject" placeholder="Konu">
+                    <label for="subject">Konu</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Mesajınızı buraya yazın.." asp-for="MessageContent" style="height: 150px"></textarea>
+                    <label for="message">Mesajınız</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" type="submit" onclick="sendMessage()">Gönder</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function sendMessage() {
+        Swal.fire({
+            title: 'Mesajınız başarıyla gönderildi.',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'Tamam'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Contact/Index"; // Yönlendirilecek URL'yi buraya yazın
+            }
+        });
+    }
+</script>
