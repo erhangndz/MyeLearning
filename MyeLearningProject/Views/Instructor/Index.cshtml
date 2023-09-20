@@ -19,6 +19,9 @@
 
 @{
     int count = 0;
+    var status = "";
+    var color = "";
+    var button = "";
 }
 
 <div class="col-lg-12">
@@ -33,6 +36,7 @@
                             <th>#</th>
                             <th>Ad Soyad</th>
                             <th>Unvan</th>
+                            <th>Durum</th>
                             <th></th>
 
                         </tr>
@@ -41,14 +45,15 @@
                         @foreach (var item in Model)
                         {
                             count++;
-
+                            if(item.Status==true){ status = "Aktif"; color = "success"; button = "Pasif Yap"; }else{ status = "Pasif"; color = "danger"; button = "Aktif Yap"; }
                             <tr>
                                 <td>@count</td>
                                 <td>@item.Name @item.Surname</td>
                                 <td>@item.Title</td>
+                                <td class="text-@color">@status</td>
                                 <td>
-                                    <button onclick="deleteInstructor(@item.InstructorId)" type="submit" class="btn btn-outline-danger">Sil</button>
-                                    <a asp-action="EditCategory" asp-route-id="@item.InstructorId" class="btn btn-outline-primary">Düzenle</a>
+                                    <a asp-action="DeleteInstructor" asp-route-id="@item.InstructorId" class="btn btn-outline-info">@button</a>
+                                    <a asp-action="EditInstructor" asp-route-id="@item.InstructorId" class="btn btn-outline-primary">Düzenle</a>
 
                                     <a href="/InstructorAnalysis/Index/@item.InstructorId" class="btn btn-outline-success">Detaylar</a>
                                 </td>
@@ -60,24 +65,7 @@
             </div>
         </div>
     </div>
-    <a href="/Category/AddCategory" class="btn btn-outline-primary">Yeni Eğitmen Ekle</a>
+    <a href="/Instructor/AddInstructor" class="btn btn-outline-primary">Yeni Eğitmen Ekle</a>
 </div>
 
 
-<script>
-    function deleteInstructor(id) {
-        Swal.fire({
-
-            title: 'Silmek istediğinize emin misiniz?',
-            text: 'Bu öğeyi silerseniz geri alamazsınız!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sil',
-            cancelButtonText: 'İptal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "/Instructor/DeleteInstructor?id=" + id; // Yönlendirilecek URL'yi buraya yazın
-            }
-        });
-    }
-</script>
