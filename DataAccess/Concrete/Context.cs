@@ -19,5 +19,7 @@ namespace DataAccess.Concrete
         public DbSet<Service> Services { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<CourseRegister> CourseRegisters { get; set; }
     }
 }

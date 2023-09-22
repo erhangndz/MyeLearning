@@ -20,5 +20,6 @@ namespace Entity.Models
         public int InstructorId { get; set; }
         public Instructor Instructor { get; set; }
         public bool Status { get; set; }
+        public List<CourseRegister> CourseRegisters { get; set; }
     }
 }
