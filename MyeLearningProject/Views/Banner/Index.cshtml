@@ -1,0 +1,83 @@
+﻿@using Entity.Models;
+@model List<Banner>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Banner</h3>
+
+    </div>
+
+</div>
+
+@{
+    int count = 0;
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title">Banner</h4>
+
+            <div class="table table-hover">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Başlık</th>
+                            <th>Açıklama</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+
+                            <tr>
+                                <td>@count</td>
+                                <td><img src="@item.Image" style="height:50px;width:50px" /> @item.Title</td>
+                                <td>@item.Description.Substring(0,4) ...</td>
+                               
+                                <td>
+                                    <button onclick="deleteBanner(@item.BannerId)" type="submit" class="btn btn-outline-danger">Sil</button>
+                                    <a asp-action="EditBanner" asp-route-id="@item.BannerId" class="btn btn-outline-primary">Düzenle</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="/Banner/AddBanner" class="btn btn-outline-primary">Yeni Banner Ekle</a>
+</div>
+
+
+
+<script>
+    function deleteBanner(id) {
+        Swal.fire({
+
+            title: 'Silmek istediğinize emin misiniz?',
+            text: 'Bu öğeyi silerseniz geri alamazsınız!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sil',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Banner/DeleteBanner?id=" + id; // Yönlendirilecek URL'yi buraya yazın
+            }
+        });
+    }
+</script>
+

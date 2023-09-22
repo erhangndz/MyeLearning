@@ -1,0 +1,77 @@
+﻿@using Entity.Models;
+@model List<Testimonial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Referanslar</h3>
+
+    </div>
+
+</div>
+
+@{
+    int count = 0;
+    var status = "";
+    var color = "";
+    var button = "";
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title">Referanslar</h4>
+
+            <div class="table table-hover">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad Soyad</th>
+                            <th>Unvan</th>
+                            <th>Yorum</th>
+                            <th>Durum</th>
+
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            if (item.Status == true) { status = "Aktif"; color = "success"; button = "Pasif Yap"; } else { status = "Pasif"; color = "danger"; button = "Aktif Yap"; }
+                            <tr>
+                                <td>@count</td>
+                                <td><img src="@item.ImageUrl" style="height:50px;width:50px" />  @item.NameSurname</td>
+                                <td>@item.Title</td>
+                                <td>@item.Comment</td>
+                                <td class="text-@color">@status</td>
+
+
+                                <td>
+                                    <a asp-action="DeleteTestimonial" asp-route-id="@item.TestimonialID" class="btn btn-outline-info">@button</a>
+                                    <a asp-action="EditTestimonial" asp-route-id="@item.TestimonialID" class="btn btn-outline-primary">Düzenle</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="/Testimonial/AddTestimonial" class="btn btn-outline-primary">Yeni Referans Ekle</a>
+</div>
+
+
+
+
+
+
