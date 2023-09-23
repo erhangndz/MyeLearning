@@ -1,0 +1,25 @@
+﻿@using Entity.Models;
+@model List<Course>
+
+<div class="tab-pane" id="settings" role="tabpanel">
+    <div class="card-block">
+        <div class="profiletimeline">
+            @foreach (var item in Model)
+            {
+                <div class="sl-item">
+                    <div class="sl-left"> <img src="@item.Image" alt="user" class="img-circle"> </div>
+                    <div class="sl-right">
+                        <div>
+                            <a href="#" class="link">@item.CourseName</a> <span class="sl-date">@item.Price ₺</span>
+                            <p class="m-t-10"> @item.Description </p>
+                        </div>
+                        <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">@ViewBag.courseCount Yorum</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> @item.Review </a> </div>
+                    </div>
+                </div>
+                <hr>
+            }
+
+
+        </div>
+    </div>
+</div>

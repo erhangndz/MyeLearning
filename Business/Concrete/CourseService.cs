@@ -1,5 +1,6 @@
 ﻿using Business.Interfaces;
 using DataAccess.Concrete;
+using DataAccess.Interfaces;
 using Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,39 +13,42 @@ namespace Business.Concrete
 {
     public class CourseService : ICourseService
     {
-        Context context = new Context();
+        private readonly IGenericRepository<Course> _courseRepository;
+
+        public CourseService(IGenericRepository<Course> courseRepository)
+        {
+            _courseRepository = courseRepository;
+        }
+
         public void Delete(int id)
         {
-          var values=   context.Courses.Find(id);
-            context.Remove<Course>(values);
-            context.SaveChanges();  
+          _courseRepository.Delete(id);
         }
 
         public List<Course> GetAll()
         {
-          return  context.Courses.Include(x=>x.Instructor).Include(x=>x.Category).ToList();
+            Context context = new Context();
+            return  context.Courses.Include(x=>x.Instructor).Include(x=>x.Category).ToList();
         }
 
         public Course GetById(int id)
         {
-            return context.Courses.Find(id);
+            return _courseRepository.GetById(id);
         }
 
         public List<Course> GetList()
         {
-            return context.Courses.ToList();
+            return _courseRepository.GetList();
         }
 
         public void Insert(Course entity)
         {
-            context.Courses.Add(entity);
-            context.SaveChanges();
+            _courseRepository.Insert(entity);
         }
 
         public void Update(Course entity)
         {
-            context.Courses.Update(entity);
-            context.SaveChanges();
+            _courseRepository.Update(entity);
         }
 
     }

@@ -21,5 +21,6 @@ namespace DataAccess.Concrete
         public DbSet<Message> Messages { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<CourseRegister> CourseRegisters { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

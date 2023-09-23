@@ -1,13 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Interfaces;
+using Entity.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.ViewComponents.InstructorAnalysis
 {
     public class _InstructorComments:ViewComponent
     {
-        
-        public IViewComponentResult Invoke()
+        private readonly ICommentService _commentService;
+        private readonly IGenericService<Course> _courseService;
+       
+
+        public _InstructorComments(ICommentService commentService, IGenericService<Course> courseService)
         {
-            return View();
+            _commentService = commentService;
+            _courseService = courseService;
+         
+        }
+
+        public IViewComponentResult Invoke(int id)
+        {
+            
+
+            var courseId = _courseService.GetList().Where(x => x.InstructorId == id).Select(x => x.CourseId).ToList();
+
+            var commentList = _commentService.GetAll().Where(x => courseId.Contains(x.CourseId)).ToList();
+            return View(commentList);
         }
     }
 }

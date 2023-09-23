@@ -10,6 +10,7 @@ namespace Entity.Models
     {
         public int CourseId { get; set; }
         public string CourseName { get; set; }
+        public string? Description { get; set; }
         public string Image { get; set; }
         public int Review { get; set; }
         public decimal Price { get; set; }
@@ -21,5 +22,6 @@ namespace Entity.Models
         public Instructor Instructor { get; set; }
         public bool Status { get; set; }
         public List<CourseRegister> CourseRegisters { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

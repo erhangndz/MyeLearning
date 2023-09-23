@@ -13,6 +13,7 @@ namespace SharedLibrary.Extensions
         public static void UseDIExtensions(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<ICourseService, CourseService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
