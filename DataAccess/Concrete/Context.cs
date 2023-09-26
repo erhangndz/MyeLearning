@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Entity.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess.Concrete
 {
-    public class Context:DbContext
+    public class Context: IdentityDbContext<AppUser,AppRole,int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,5 +24,6 @@ namespace DataAccess.Concrete
         public DbSet<Student> Students { get; set; }
         public DbSet<CourseRegister> CourseRegisters { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

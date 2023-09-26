@@ -1,0 +1,24 @@
+﻿@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<br /><br />
+
+<div class="card container-fluid text-lg-center" >
+    <h3>Öğrenci Giriş Sayfası</h3>
+</div>
+<br />
+<form method="post">
+    <div class="container">
+        <label>Mail Adresiniz</label>
+        <input type="email" class="form-control" asp-for="Email" />
+        <br />
+       
+        <label>Şifreniz</label>
+        <input type="password" class="form-control" asp-for="Password" />
+        <br />
+        <button class="btn btn-dark">Giriş Yap</button>
+    </div>
+</form>

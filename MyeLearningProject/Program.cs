@@ -3,6 +3,7 @@ using Business.Interfaces;
 using DataAccess.Interfaces;
 using DataAccess.Repositories;
 using DataAccess.UnitOfWork;
+using Entity.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SharedLibrary.Extensions;
 
@@ -27,6 +28,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
