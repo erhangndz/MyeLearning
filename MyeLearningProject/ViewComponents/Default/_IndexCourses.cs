@@ -17,7 +17,10 @@ namespace MyeLearningProject.ViewComponents.Default
 
 		public IViewComponentResult Invoke()
         {
-            var reviewList= _reviewService.GetList();
+            ViewBag.course2AvgScore= _reviewService.GetList().Where(x=>x.CourseId==2).Average(x=>x.Score).ToString();
+            ViewBag.course3AvgScore= _reviewService.GetList().Where(x=>x.CourseId==3).Average(x=>x.Score).ToString();
+            ViewBag.course4AvgScore= _reviewService.GetList().Where(x=>x.CourseId==4).Average(x=>x.Score).ToString();
+            ViewBag.course8AvgScore= _reviewService.GetList().Where(x=>x.CourseId==8).Average(x=>x.Score).ToString();
             var values = _courseService.GetAll();
             return View(values);
         }

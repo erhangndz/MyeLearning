@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.Controllers
 {
-    public class CourseController : Controller
+	[AllowAnonymous]
+	public class CourseController : Controller
     {
         public IActionResult Index()
         {

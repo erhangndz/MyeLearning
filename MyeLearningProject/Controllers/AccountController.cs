@@ -1,46 +1,57 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyeLearningProject.Models;
 
 namespace MyeLearningProject.Controllers
 {
+	[AllowAnonymous]
 	public class AccountController : Controller
 	{
 		private readonly UserManager<AppUser> _userManager;
 		private readonly SignInManager<AppUser> _signInManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-        }
-
-        public IActionResult Login()
+		public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
 		{
-            return View();
+			_userManager = userManager;
+			_signInManager = signInManager;
+		}
+
+		[HttpGet]
+		public IActionResult Login()
+		{
+			return View();
 		}
 
 		[HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
-        {
+		public async Task<IActionResult> Login(LoginViewModel model)
+		{
 			AppUser user = new AppUser()
 			{
-				Email = model.Email,
-				
+				UserName = model.Username,
 
 			};
-			if (ModelState.IsValid)
-			{
-				await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-				return RedirectToAction("Index","Instructor");
-			}
-            return View();
-        }
 
-        [HttpGet]
+			var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+			if (result.Succeeded)
+			{
+				return RedirectToAction("Index", "Category");
+			}
+			else
+			{
+				ModelState.AddModelError("", "Kullanıcı adı veya şifre yanlış");
+				return View();
+			}
+
+
+
+
+		}
+
+		[HttpGet]
 		public IActionResult SignUp()
 		{
 			return View();
@@ -52,17 +63,35 @@ namespace MyeLearningProject.Controllers
 			AppUser user = new AppUser()
 			{
 				Email = model.Email,
-				UserName=model.Username
+				UserName = model.Username
 
 			};
-			if(ModelState.IsValid)
+
+			var result = await _userManager.CreateAsync(user, model.Password);
+			if (result.Succeeded)
 			{
-				await _userManager.CreateAsync(user,model.Password);
 				return RedirectToAction("Login");
 			}
+			else
+			{
+				foreach (var item in result.Errors)
+				{
+					ModelState.AddModelError("", item.Description);
+					return View();
+				}
+			}
 
-			return View();
+			return View(model);
+
+
+
 		}
 
-    }
+		public async Task<IActionResult> Logout()
+		{
+			await _signInManager.SignOutAsync();
+			return RedirectToAction("Login");
+		}
+
+	}
 }

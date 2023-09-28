@@ -1,10 +1,12 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.Controllers
 {
-    public class ContactController : Controller
+	[AllowAnonymous]
+	public class ContactController : Controller
     {
         private readonly IGenericService<Message> _messageService;
         public ContactController(IGenericService<Message> messageService)

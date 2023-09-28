@@ -5,9 +5,12 @@ using DataAccess.Interfaces;
 using DataAccess.Repositories;
 using DataAccess.UnitOfWork;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace SharedLibrary.Extensions
@@ -25,8 +28,24 @@ namespace SharedLibrary.Extensions
             builder.Services.AddDbContext<Context>();
             
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+			builder.Services.AddMvcCore(config =>
+			{
+				var policy = new AuthorizationPolicyBuilder()
+				.RequireAuthenticatedUser()
+				.Build();
+				config.Filters.Add(new AuthorizeFilter(policy));
+			});
+			builder.Services.ConfigureApplicationCookie(_ =>
+			{
+				_.LoginPath = new PathString("/Account/Login");
+				_.AccessDeniedPath = new PathString("/ErrorPage/AccessDenied/");
+				_.LogoutPath = new PathString("/Account/Logout");
 
 
-        }
-    }
+			});
+
+
+
+		}
+	}
 }

@@ -1,6 +1,9 @@
 ﻿@using Entity.Models;
 @model List<Course>
 
+@{
+    var score = "";
+}
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -27,6 +30,14 @@
                  
                         <h5 class="mb-4">@item.CourseName</h5>
                     </div>
+                        <div class="text-center p-4 pb-0">
+
+                            @if (item.CourseId == 2) { score = ViewBag.course2AvgScore; }
+                            @if (item.CourseId == 3) { score = ViewBag.course3AvgScore; }
+                            @if (item.CourseId == 4) { score = ViewBag.course4AvgScore; }
+                            @if (item.CourseId == 8) { score = ViewBag.course8AvgScore; }
+                            <h5 class="mb-4">Puanı: @score</h5>
+                        </div>
                     <div class="d-flex border-top">
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>@item.Instructor.Name @item.Instructor.Surname</small>
                         <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>@item.CourseTime Saat</small>

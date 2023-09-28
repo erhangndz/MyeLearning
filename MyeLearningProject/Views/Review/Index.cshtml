@@ -5,6 +5,9 @@
     Layout = null;
 }
 
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <head>
 	<title>Kurs Puanlama | eLearning </title>
@@ -24,9 +27,7 @@
 <div class="container card text-center">
 	<!-- partial:index.partial.html -->
 	<form method="post" asp-action="Index">
-		<label>Öğrenci Seçin</label>
-		@Html.DropDownListFor(x=>x.StudentId,(List<SelectListItem>)ViewBag.student,new{@class="form-control"})
-			<br />
+		
 		<label>Kurs Seçin</label>
 		@Html.DropDownListFor(x=>x.CourseId,(List<SelectListItem>)ViewBag.course,new{@class="form-control"})
 		<br />
@@ -58,11 +59,30 @@
 			<!-- partial -->
 			
 		<br />
-		<button type="submit" class="btn btn-warning">Kaydet</button>
+			<button type="submit" class="btn btn-warning" onclick="ReviewAlert()">Kaydet</button>
 	</form>
 	<!-- partial -->
 
 
 </div>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+	<script>
+		function ReviewAlert() {
+			Swal.fire({
+
+				title: 'Tebrikler',
+				text: 'Oyunuz sisteme kaydedildi! ',
+				icon: 'success',
+				showCancelButton: false,
+				confirmButtonText: 'Tamam',
+			
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "/AdminCourse/Index"; // Yönlendirilecek URL'yi buraya yazın
+				}
+			});
+		}
+	</script>
 </body>

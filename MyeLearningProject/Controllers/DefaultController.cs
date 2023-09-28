@@ -1,10 +1,12 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.Controllers
 {
-    public class DefaultController : Controller
+	[AllowAnonymous]
+	public class DefaultController : Controller
     {
         private readonly IGenericService<Subscribe> _subscribeService;
 

@@ -4,6 +4,7 @@ using DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MyeLearningProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230928151718_mig_relation_between_user_review")]
+    partial class mig_relation_between_user_review
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,17 +102,11 @@ namespace MyeLearningProject.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NameSurname")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -268,9 +264,6 @@ namespace MyeLearningProject.Migrations
                     b.Property<int>("Quota")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Review")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
@@ -403,11 +396,16 @@ namespace MyeLearningProject.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StudentID")
+                        .HasColumnType("int");
+
                     b.HasKey("ReviewID");
 
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Reviews");
                 });
@@ -691,6 +689,10 @@ namespace MyeLearningProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entity.Models.Student", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("StudentID");
+
                     b.Navigation("AppUser");
 
                     b.Navigation("Course");
@@ -776,6 +778,8 @@ namespace MyeLearningProject.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("CourseRegisters");
+
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

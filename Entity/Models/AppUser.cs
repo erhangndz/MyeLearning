@@ -9,6 +9,8 @@ namespace Entity.Models
 {
     public class AppUser:IdentityUser<int>
     {
-
+        public string? NameSurname { get; set; }
+        public string? Image { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

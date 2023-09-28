@@ -10,15 +10,16 @@
     <h3>Öğrenci Giriş Sayfası</h3>
 </div>
 <br />
-<form method="post">
+<form method="post" asp-action="Login">
     <div class="container">
-        <label>Mail Adresiniz</label>
-        <input type="email" class="form-control" asp-for="Email" />
+        <label>Kullanıcı Adınız</label>
+        <input type="text" class="form-control" asp-for="Username" />
         <br />
        
         <label>Şifreniz</label>
         <input type="password" class="form-control" asp-for="Password" />
         <br />
-        <button class="btn btn-dark">Giriş Yap</button>
+        <p style="color:red">@Html.ValidationSummary() </p>
+        <button type="submit" class="btn btn-dark">Giriş Yap</button>
     </div>
 </form>

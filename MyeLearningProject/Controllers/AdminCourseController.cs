@@ -1,4 +1,5 @@
 ﻿using Business.Interfaces;
+using DataAccess.Concrete;
 using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,16 +11,19 @@ namespace MyeLearningProject.Controllers
         private readonly ICourseService _courseService;
         private readonly IGenericService<Category> _categoryService;
         private readonly IGenericService<Instructor> _instructorService;
+        private readonly IReviewService _reviewService;
 
-        public AdminCourseController(ICourseService courseService, IGenericService<Category> categoryService, IGenericService<Instructor> instructorService)
-        {
-            _courseService = courseService;
-            _categoryService = categoryService;
-            _instructorService = instructorService;
-        }
+		public AdminCourseController(ICourseService courseService, IGenericService<Category> categoryService, IGenericService<Instructor> instructorService, IReviewService reviewService)
+		{
+			_courseService = courseService;
+			_categoryService = categoryService;
+			_instructorService = instructorService;
+			_reviewService = reviewService;
+		}
 
-        public IActionResult Index()
+		public IActionResult Index()
         {
+          
            var values= _courseService.GetAll();
             return View(values);
         }

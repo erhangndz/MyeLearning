@@ -34,6 +34,8 @@
                             <th>Fiyatı</th>
                             <th>Kategorisi</th>
                             <th>Eğitmeni</th>
+                            
+                           
                             <th></th>
 
                         </tr>
@@ -49,6 +51,8 @@
                                 <td>@item.Price ₺</td>
                                 <td>@item.Category.CategoryName</td>
                                 <td>@item.Instructor.Name @item.Instructor.Surname</td>
+                                
+                         
                                 <td>
                                     <button onclick="deleteCourse(@item.CourseId)" type="submit" class="btn btn-outline-danger">Sil</button>
                                     <a asp-action="EditCourse" asp-route-id="@item.CourseId" class="btn btn-outline-primary">Düzenle</a>
