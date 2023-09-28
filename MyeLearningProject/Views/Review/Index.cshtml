@@ -1,10 +1,68 @@
-﻿
+﻿@using Entity.Models;
+@model Review
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = null;
 }
 
-<h1>Index</h1>
+
+<head>
+	<title>Kurs Puanlama | eLearning </title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="~/css-half-star-rating/dist/style.css">
+	<link rel="stylesheet" href="~/css-half-star-rating/dist/style.css">
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+
+</head>
 
 
 
+
+  
+<body>
+
+<div class="container card text-center">
+	<!-- partial:index.partial.html -->
+	<form method="post" asp-action="Index">
+		<label>Öğrenci Seçin</label>
+		@Html.DropDownListFor(x=>x.StudentId,(List<SelectListItem>)ViewBag.student,new{@class="form-control"})
+			<br />
+		<label>Kurs Seçin</label>
+		@Html.DropDownListFor(x=>x.CourseId,(List<SelectListItem>)ViewBag.course,new{@class="form-control"})
+		<br />
+
+			
+			<fieldset class="rate">
+				<input type="radio" id="rating10" name="Score" value="10" />
+				<label for="rating10" title="10"></label>
+				<input type="radio" id="rating9" name="Score" value="9" />
+				<label class="half" for="rating9" title="9"></label>
+				<input type="radio" id="rating8" name="Score" value="8" />
+				<label for="rating8" title="8"></label>
+				<input type="radio" id="rating7" name="Score" value="7" />
+				<label class="half" for="rating7" title="7"></label>
+				<input type="radio" id="rating6" name="Score" value="6" />
+				<label for="rating6" title="6"></label>
+				<input type="radio" id="rating5" name="Score" value="5" />
+				<label class="half" for="rating5" title="5"></label>
+				<input type="radio" id="rating4" name="Score" value="4" />
+				<label for="rating4" title="4"></label>
+				<input type="radio" id="rating3" name="Score" value="3" />
+				<label class="half" for="rating3" title="3"></label>
+				<input type="radio" id="rating2" name="Score" value="2" />
+				<label for="rating2" title="2"></label>
+				<input type="radio" id="rating1" name="Score" value="1" />
+				<label class="half" for="rating1" title="1"></label>
+
+			</fieldset>
+			<!-- partial -->
+			
+		<br />
+		<button type="submit" class="btn btn-warning">Kaydet</button>
+	</form>
+	<!-- partial -->
+
+
+</div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</body>

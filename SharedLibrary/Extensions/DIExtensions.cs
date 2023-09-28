@@ -18,6 +18,7 @@ namespace SharedLibrary.Extensions
         {
             builder.Services.AddScoped<ICourseService, CourseService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<IReviewService, ReviewService>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

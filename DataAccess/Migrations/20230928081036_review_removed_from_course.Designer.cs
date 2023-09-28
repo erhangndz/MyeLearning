@@ -4,6 +4,7 @@ using DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MyeLearningProject.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230928081036_review_removed_from_course")]
+    partial class review_removed_from_course
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("AboutUsId");
 
-                    b.ToTable("AboutUses", (string)null);
+                    b.ToTable("AboutUses");
                 });
 
             modelBuilder.Entity("Entity.Models.AppRole", b =>
@@ -168,7 +170,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("BannerId");
 
-                    b.ToTable("Banners", (string)null);
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("Entity.Models.Category", b =>
@@ -191,7 +193,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Entity.Models.Comment", b =>
@@ -224,7 +226,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Entity.Models.Course", b =>
@@ -271,7 +273,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasIndex("InstructorId");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Entity.Models.CourseRegister", b =>
@@ -298,7 +300,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasIndex("StudentID");
 
-                    b.ToTable("CourseRegisters", (string)null);
+                    b.ToTable("CourseRegisters");
                 });
 
             modelBuilder.Entity("Entity.Models.Instructor", b =>
@@ -345,7 +347,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("InstructorId");
 
-                    b.ToTable("Instructors", (string)null);
+                    b.ToTable("Instructors");
                 });
 
             modelBuilder.Entity("Entity.Models.Message", b =>
@@ -374,7 +376,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("MessageId");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Entity.Models.Review", b =>
@@ -400,7 +402,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Entity.Models.Service", b =>
@@ -424,7 +426,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("ServiceId");
 
-                    b.ToTable("Services", (string)null);
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Entity.Models.Student", b =>
@@ -456,7 +458,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("StudentID");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Entity.Models.Subscribe", b =>
@@ -473,7 +475,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("SubscribeId");
 
-                    b.ToTable("Subscribes", (string)null);
+                    b.ToTable("Subscribes");
                 });
 
             modelBuilder.Entity("Entity.Models.Testimonial", b =>
@@ -505,7 +507,7 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("TestimonialID");
 
-                    b.ToTable("Testimonials", (string)null);
+                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

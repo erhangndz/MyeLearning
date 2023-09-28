@@ -12,7 +12,6 @@ namespace Entity.Models
         public string CourseName { get; set; }
         public string? Description { get; set; }
         public string Image { get; set; }
-        public int Review { get; set; }
         public decimal Price { get; set; }
         public int Quota { get; set; }
         public string CourseTime { get; set; }
@@ -24,5 +23,6 @@ namespace Entity.Models
         public List<CourseRegister> CourseRegisters { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Review> Reviews { get; set; }
+        
     }
 }
