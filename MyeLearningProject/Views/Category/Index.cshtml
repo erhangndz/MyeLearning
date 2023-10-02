@@ -17,6 +17,9 @@
 
 @{
     int count = 0;
+    var status = "";
+    var color = "";
+    var button = "";
 }
 
 <div class="col-lg-12">
@@ -30,6 +33,7 @@
                         <tr>
                             <th>#</th>
                             <th>Kategori Adı</th>
+                            <th>Ana Sayfada Görünüm</th>
                             <th></th>
                             
                         </tr>
@@ -38,11 +42,14 @@
                         @foreach (var item in Model)
                         {
                             count++;
+                            if (item.Status == true) { status = "Görünüyor"; color = "success"; button = "Görünmesin"; } else { status = "Görünmüyor"; color = "danger"; button = "Görünsün"; }
 
                         <tr>
                             <td>@count</td>
                             <td>@item.CategoryName</td>
+                            <td class="text-@color" >@status</td>
                             <td>
+                                    <a asp-action="ChangeStatus" asp-route-id="@item.CategoryId" class="btn btn-outline-info">@button</a>
                                 <button onclick="deleteCategory(@item.CategoryId)" type="submit" class="btn btn-outline-danger">Sil</button>
                                 <a asp-action="EditCategory" asp-route-id="@item.CategoryId" class="btn btn-outline-primary">Düzenle</a>
                             </td>

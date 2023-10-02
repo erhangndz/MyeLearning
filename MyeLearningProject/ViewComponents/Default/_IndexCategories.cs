@@ -15,7 +15,7 @@ namespace MyeLearningProject.ViewComponents.Default
 
         public IViewComponentResult Invoke()
         {
-            var values = _categoryService.GetList();
+            var values = _categoryService.GetList().Where(x=>x.Status==true).ToList();
             return View(values);
         }
     }

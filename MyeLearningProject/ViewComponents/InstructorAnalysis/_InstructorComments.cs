@@ -7,10 +7,10 @@ namespace MyeLearningProject.ViewComponents.InstructorAnalysis
     public class _InstructorComments:ViewComponent
     {
         private readonly ICommentService _commentService;
-        private readonly IGenericService<Course> _courseService;
+        private readonly ICourseService _courseService;
        
 
-        public _InstructorComments(ICommentService commentService, IGenericService<Course> courseService)
+        public _InstructorComments(ICommentService commentService, ICourseService courseService)
         {
             _commentService = commentService;
             _courseService = courseService;

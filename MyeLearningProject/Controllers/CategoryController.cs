@@ -30,6 +30,21 @@ namespace MyeLearningProject.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ChangeStatus(int id)
+        {
+            var values = _categoryService.GetById(id);
+            if (values.Status == false)
+            {
+                values.Status = true;
+            }
+            else
+            {
+                values.Status = false;
+            }
+            _categoryService.Update(values);
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         public IActionResult EditCategory(int id)
         {

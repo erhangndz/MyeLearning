@@ -8,10 +8,10 @@ namespace MyeLearningProject.ViewComponents.InstructorAnalysis
     public class _InstructorPanel:ViewComponent
     {
         private readonly IGenericService<Instructor> _instructorService;
-        private readonly IGenericService<Course> _courseService;
+        private readonly ICourseService _courseService;
         private readonly ICommentService _commentService;
 
-        public _InstructorPanel(IGenericService<Instructor> instructorService, IGenericService<Course> courseService, ICommentService commentService)
+        public _InstructorPanel(IGenericService<Instructor> instructorService, ICourseService courseService, ICommentService commentService)
         {
             _instructorService = instructorService;
             _courseService = courseService;
