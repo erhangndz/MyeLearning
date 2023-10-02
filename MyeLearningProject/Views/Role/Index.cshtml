@@ -1,0 +1,65 @@
+﻿@using Entity.Models;
+@model List<AppRole>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Rol Listesi</h3>
+
+    </div>
+
+</div>
+@{
+    int count = 0;
+}
+<br />
+@if (Model.Any())
+{
+
+ <div class="col-lg-12">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title">Hakkımızda</h4>
+
+            <div class="table table-hover">
+                <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Rol Adı</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+
+            <tr>
+                <td>@count</td>
+                <td>@item.Name</td>
+                <td>
+                   
+                    
+                        <a class="btn btn-outline-danger" asp-action="DeleteRole" asp-route-id="@item.Id"><i class='mdi mdi-delete'></i>Sil </a>
+                        <a asp-action="UpdateRole" asp-route-id="@item.Id" class="btn btn-outline-primary"><i class='mdi mdi-pencil'></i>Düzenle</a>
+
+                            
+                 
+                </td>
+            </tr>
+        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <a class=" btn btn-outline-primary" href="/Role/CreateRole"><i class='mdi mdi-account-plus'></i>Yeni Rol Ekle </a>
+    </div>
+}
+else
+{
+    <p class="alert alert-warning">Herhangi bir Rol Bulunamadı</p>
+}
+
+
+

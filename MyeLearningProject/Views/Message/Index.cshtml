@@ -48,9 +48,9 @@
                                 <td>@item.Email</td>
                                 <td>@item.Subject</td>
                                 <td>
-                                    <button onclick="deleteMessage(@item.MessageId)" type="submit" class="btn btn-outline-danger">Sil</button>
-                             
-                                    <a asp-action="MessageDetails" asp-route-id="@item.MessageId" class="btn btn-outline-info">Mesajı Aç</a>
+                                    <button onclick="deleteMessage(@item.MessageId)" type="submit" class="btn btn-outline-danger"><i class='mdi mdi-delete'></i>Sil</button>
+
+                                    <a asp-action="MessageDetails" asp-route-id="@item.MessageId" class="btn btn-outline-info"><i class='mdi mdi-comment'></i>Mesajı Aç</a>
                                 </td>
 
                             </tr>

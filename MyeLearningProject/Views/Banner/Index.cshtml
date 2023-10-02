@@ -47,8 +47,8 @@
                                 <td>@item.Description.Substring(0,4) ...</td>
                                
                                 <td>
-                                    <button onclick="deleteBanner(@item.BannerId)" type="submit" class="btn btn-outline-danger">Sil</button>
-                                    <a asp-action="EditBanner" asp-route-id="@item.BannerId" class="btn btn-outline-primary">Düzenle</a>
+                                    <button onclick="deleteBanner(@item.BannerId)" type="submit" class="btn btn-outline-danger"><i class='mdi mdi-delete'></i>Sil</button>
+                                    <a asp-action="EditBanner" asp-route-id="@item.BannerId" class="btn btn-outline-primary"><i class='mdi mdi-pencil'></i>Düzenle</a>
                                 </td>
 
                             </tr>

@@ -54,8 +54,8 @@
                                 
                          
                                 <td>
-                                    <button onclick="deleteCourse(@item.CourseId)" type="submit" class="btn btn-outline-danger">Sil</button>
-                                    <a asp-action="EditCourse" asp-route-id="@item.CourseId" class="btn btn-outline-primary">Düzenle</a>
+                                    <button onclick="deleteCourse(@item.CourseId)" type="submit" class="btn btn-outline-danger"><i class='mdi mdi-delete'></i>Sil</button>
+                                    <a asp-action="EditCourse" asp-route-id="@item.CourseId" class="btn btn-outline-primary"><i class='mdi mdi-pencil'></i>Düzenle</a>
                                 </td>
 
                             </tr>
@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <a href="/AdminCourse/AddCourse" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
+    <a href="/AdminCourse/AddCourse" class="btn btn-outline-primary"><i class="mdi mdi-plus-circle"></i>Yeni Kurs Ekle</a>
 </div>
 
 

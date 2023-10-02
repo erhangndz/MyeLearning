@@ -49,8 +49,8 @@
                            
 
                                 <td>
-                                    <button onclick="deleteAbout(@item.AboutUsId)" type="submit" class="btn btn-outline-danger">Sil</button>
-                                    <a asp-action="EditAbout" asp-route-id="@item.AboutUsId" class="btn btn-outline-primary">Düzenle</a>
+                                    <button onclick="deleteAbout(@item.AboutUsId)" type="submit" class="btn btn-outline-danger"><i class='mdi mdi-delete'></i>Sil</button>
+                                    <a asp-action="EditAbout" asp-route-id="@item.AboutUsId" class="btn btn-outline-primary"><i class='mdi mdi-pencil'></i>Düzenle</a>
                                 </td>
 
                             </tr>
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <a href="/AdminAbout/AddAbout" class="btn btn-outline-primary">Yeni Hakkımızda Ekle</a>
+    <a href="/AdminAbout/AddAbout" class="btn btn-outline-primary"><i class="mdi mdi-plus-circle"></i> Yeni Hakkımızda Ekle</a>
 </div>
 
 
