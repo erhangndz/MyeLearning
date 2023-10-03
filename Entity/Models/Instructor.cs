@@ -11,7 +11,7 @@
         public string Facebook { get; set; }
         public string Twitter { get; set; }
         public string Instagram { get; set; }
-        public List<Course> Courses { get; set; }
+        
         public bool Status { get; set; }
     }
 }

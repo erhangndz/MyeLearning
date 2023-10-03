@@ -28,7 +28,7 @@ namespace Business.Concrete
         public List<Course> GetAll()
         {
             Context context = new Context();
-            return  context.Courses.Include(x=>x.Instructor).Include(x=>x.Category).Include(x=>x.Reviews).ToList();
+            return  context.Courses.Include(x=>x.AppUser).Include(x=>x.Category).Include(x=>x.Reviews).ToList();
         }
 
         public Course GetById(int id)

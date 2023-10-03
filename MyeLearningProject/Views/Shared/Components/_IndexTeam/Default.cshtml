@@ -1,5 +1,5 @@
 ﻿@using Entity.Models;
-@model List<Instructor>
+@model List<AppUser>
 
 <div class="container-xxl py-5">
     <div class="container">
@@ -19,14 +19,14 @@
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href="@item.Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="@item.Twitter"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="@item.Instagram"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-0">@item.Name @item.Surname</h5>
-                        <small>@item.Title</small>
+                        <h5 class="mb-0">@item.NameSurname</h5>
+                        <small>Eğitmen</small>
                     </div>
                 </div>
             </div>

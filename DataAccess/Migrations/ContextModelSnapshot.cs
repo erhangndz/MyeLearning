@@ -241,6 +241,9 @@ namespace MyeLearningProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseId"), 1L, 1);
 
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -259,9 +262,6 @@ namespace MyeLearningProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InstructorId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -273,9 +273,9 @@ namespace MyeLearningProject.Migrations
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("AppUserId");
 
-                    b.HasIndex("InstructorId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Courses");
                 });
@@ -638,21 +638,19 @@ namespace MyeLearningProject.Migrations
 
             modelBuilder.Entity("Entity.Models.Course", b =>
                 {
+                    b.HasOne("Entity.Models.AppUser", "AppUser")
+                        .WithMany("Courses")
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("Entity.Models.Category", "Category")
                         .WithMany("Courses")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entity.Models.Instructor", "Instructor")
-                        .WithMany("Courses")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AppUser");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("Entity.Models.CourseRegister", b =>
@@ -746,6 +744,8 @@ namespace MyeLearningProject.Migrations
 
             modelBuilder.Entity("Entity.Models.AppUser", b =>
                 {
+                    b.Navigation("Courses");
+
                     b.Navigation("Reviews");
                 });
 
@@ -761,11 +761,6 @@ namespace MyeLearningProject.Migrations
                     b.Navigation("CourseRegisters");
 
                     b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("Entity.Models.Instructor", b =>
-                {
-                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("Entity.Models.Student", b =>

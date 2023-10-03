@@ -1,15 +1,14 @@
-﻿@using Entity.Models;
-@model List<Instructor>
+﻿
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
 }
 
 <div class="row">
     <!-- Column -->
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <!-- Column -->
- @await Component.InvokeAsync("_InstructorPanel",new {id=ViewBag.id})
+ @await Component.InvokeAsync("_InstructorPanel")
         <!-- Column -->
 @*         <div class="card">
             <div class="card-block bg-info">
@@ -63,10 +62,10 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                @await Component.InvokeAsync("_InstructorComments",new {id=ViewBag.id})
+                @await Component.InvokeAsync("_InstructorComments")
                 <!--second tab-->
-                @await Component.InvokeAsync("_InstructorContact",new {id=ViewBag.id})
-                @await Component.InvokeAsync("_InstructorCourses",new {id=ViewBag.id})
+                @await Component.InvokeAsync("_InstructorContact")
+                @await Component.InvokeAsync("_InstructorCourses")
             </div>
         </div>
     </div>

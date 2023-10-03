@@ -1,21 +1,17 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.Controllers
 {
+    [Authorize(Roles = "Instructor")]
     public class InstructorAnalysisController : Controller
     {
-        private readonly IGenericService<Instructor> _instructorService;
-
-        public InstructorAnalysisController(IGenericService<Instructor> instructorService)
+        
+        public IActionResult Index()
         {
-            _instructorService = instructorService;
-        }
-
-        public IActionResult Index(int id)
-        {
-            ViewBag.id = id;
+            
             return View();
         }
 

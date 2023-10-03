@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.ViewComponents.InstructorAnalysis
@@ -10,23 +11,28 @@ namespace MyeLearningProject.ViewComponents.InstructorAnalysis
         private readonly IGenericService<Instructor> _instructorService;
         private readonly ICourseService _courseService;
         private readonly ICommentService _commentService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public _InstructorPanel(IGenericService<Instructor> instructorService, ICourseService courseService, ICommentService commentService)
+        public _InstructorPanel(IGenericService<Instructor> instructorService, ICourseService courseService, ICommentService commentService, UserManager<AppUser> userManager)
         {
             _instructorService = instructorService;
             _courseService = courseService;
             _commentService = commentService;
+            _userManager = userManager;
         }
 
-        public IViewComponentResult Invoke(int id)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            ViewBag.courseCount = _courseService.GetList().Count(x=>x.InstructorId==id);
-            var courseId = _courseService.GetList().Where(x => x.InstructorId == id).Select(x => x.CourseId).ToList();
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            ViewBag.courseCount = _courseService.GetAll().Count(x=>x.AppUserId ==user.Id);
+            var courseId = _courseService.GetAll().Where(x => x.AppUserId == user.Id).Select(x => x.CourseId).ToList();
 
             ViewBag.commentCount = _commentService.GetAll().Where(x => courseId.Contains(x.CourseId)).Count();
-            
-            var values = _instructorService.GetById(id);
-            return View(values);
+
+            ViewBag.image = user.Image;
+            ViewBag.name = user.NameSurname;
+
+            return View();
         }
     }
 }

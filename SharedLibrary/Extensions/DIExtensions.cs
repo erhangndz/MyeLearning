@@ -27,7 +27,7 @@ namespace SharedLibrary.Extensions
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddDbContext<Context>();
             
-            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 			builder.Services.AddMvcCore(config =>
 			{
 				var policy = new AuthorizationPolicyBuilder()
@@ -37,13 +37,13 @@ namespace SharedLibrary.Extensions
 			});
 			builder.Services.ConfigureApplicationCookie(_ =>
 			{
-				_.LoginPath = new PathString("/Account/Login");
+				_.LoginPath = new PathString("/Login/Index");
 				_.AccessDeniedPath = new PathString("/ErrorPage/AccessDenied/");
 				_.LogoutPath = new PathString("/Account/Logout");
 
 
-			});
-
+			});	
+				
 
 
 		}

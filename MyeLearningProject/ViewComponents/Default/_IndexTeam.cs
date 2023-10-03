@@ -1,20 +1,23 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.ViewComponents.Default
 {
     public class _IndexTeam:ViewComponent
     {
-        private readonly IGenericService<Instructor> _instructorService;
-        public _IndexTeam(IGenericService<Instructor> instructorService)
+        private readonly UserManager<AppUser> _userManager;
+
+        public _IndexTeam(UserManager<AppUser> userManager)
         {
-            _instructorService = instructorService;
+            _userManager = userManager;
         }
-        public IViewComponentResult Invoke()
+
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-           var values= _instructorService.GetList();
-            return View(values);
+            var instructors = await _userManager.GetUsersInRoleAsync("Instructor");
+            return View(instructors);
         }
     }
 }

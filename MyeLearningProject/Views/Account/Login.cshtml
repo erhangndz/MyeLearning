@@ -6,20 +6,71 @@
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 <br /><br />
 
-<div class="card container-fluid text-lg-center" >
-    <h3>Öğrenci Giriş Sayfası</h3>
-</div>
-<br />
-<form method="post" asp-action="Login">
-    <div class="container">
-        <label>Kullanıcı Adınız</label>
-        <input type="text" class="form-control" asp-for="Username" />
-        <br />
-       
-        <label>Şifreniz</label>
-        <input type="password" class="form-control" asp-for="Password" />
-        <br />
-        <p style="color:red">@Html.ValidationSummary() </p>
-        <button type="submit" class="btn btn-dark">Giriş Yap</button>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>eLearning | Admin Girişi </title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/colorlib-regform-7/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/colorlib-regform-7/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign in form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="~/colorlib-regform-7/images/signin-image.jpg" alt="sing up image"></figure>
+                       
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Admin Girişi</h2>
+                        <form method="POST" class="register-form" >
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" asp-for="Username" id="your_name" placeholder="Kullanıcı Adınız" />
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" asp-for="Password" id="your_pass" placeholder="Şifreniz" />
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Beni Hatırla</label>
+                            </div>
+                            <div class="form-group">
+                                <a style="color:red">@Html.ValidationSummary()</a>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit"  id="signin" class="form-submit" value="Giriş Yap" />
+                            </div>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
     </div>
-</form>
+
+    <!-- JS -->
+    <script src="~/colorlib-regform-7/vendor/jquery/jquery.min.js"></script>
+    <script src="~/colorlib-regform-7/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

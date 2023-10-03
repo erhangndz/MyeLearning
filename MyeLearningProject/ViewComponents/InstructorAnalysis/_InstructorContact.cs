@@ -1,22 +1,24 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.ViewComponents.InstructorAnalysis
 {
     public class _InstructorContact:ViewComponent
     {
-        private readonly IGenericService<Instructor> _instructorService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public _InstructorContact(IGenericService<Instructor> instructorService)
+        public _InstructorContact(UserManager<AppUser> userManager)
         {
-            _instructorService = instructorService;
+            _userManager = userManager;
         }
 
-        public IViewComponentResult Invoke(int id)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = _instructorService.GetById(id);
-            return View(values);
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+         
+            return View(user);
         }
     }
 }

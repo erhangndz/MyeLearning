@@ -28,7 +28,7 @@ namespace Business.Concrete
 		public List<Review> GetAll()
 		{
 			Context context = new Context();
-			return context.Reviews.Include(x=>x.Course).ThenInclude(x=>x.Category).Include(x=>x.Course).ThenInclude(x=>x.Instructor).Include(x=>x.AppUser).Distinct().ToList();
+			return context.Reviews.Include(x=>x.Course).ThenInclude(x=>x.Category).Include(x=>x.Course).ThenInclude(x=>x.AppUser).Include(x=>x.AppUser).Distinct().ToList();
 		}
 
 		public Review GetById(int id)

@@ -52,6 +52,60 @@ namespace MyeLearningProject.Controllers
 		}
 
 		[HttpGet]
+		public IActionResult InstructorLogin()
+		{
+			return View();
+		}
+        [HttpPost]
+        public async Task<IActionResult> InstructorLogin(LoginViewModel model)
+        {
+            AppUser user = new AppUser()
+            {
+                UserName = model.Username,
+
+            };
+
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "InstructorAnalysis");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Kullanıcı adı veya şifre yanlış");
+                return View();
+            }
+
+        }
+
+		[HttpGet]
+		public IActionResult StudentLogin()
+		{
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> StudentLogin(LoginViewModel model)
+		{
+			AppUser user = new AppUser()
+			{
+				UserName = model.Username,
+
+			};
+
+			var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+			if (result.Succeeded)
+			{
+				return RedirectToAction("Index", "Category");
+			}
+			else
+			{
+				ModelState.AddModelError("", "Kullanıcı adı veya şifre yanlış");
+				return View();
+			}
+
+		}
+
+		[HttpGet]
 		public IActionResult SignUp()
 		{
 			return View();
@@ -70,6 +124,7 @@ namespace MyeLearningProject.Controllers
 			var result = await _userManager.CreateAsync(user, model.Password);
 			if (result.Succeeded)
 			{
+				await _userManager.AddToRoleAsync(user, "Student");
 				return RedirectToAction("Login");
 			}
 			else

@@ -1,4 +1,6 @@
 ﻿using Business.Interfaces;
+using Entity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.ViewComponents.InstructorAnalysis
@@ -6,16 +8,19 @@ namespace MyeLearningProject.ViewComponents.InstructorAnalysis
     public class _InstructorCourses:ViewComponent
     {
         private readonly ICourseService _courseService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public _InstructorCourses(ICourseService courseService)
+        public _InstructorCourses(ICourseService courseService, UserManager<AppUser> userManager)
         {
             _courseService = courseService;
+            _userManager = userManager;
         }
 
-        public IViewComponentResult Invoke(int id)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            ViewBag.courseCount = _courseService.GetList().Count(x=>x.InstructorId==id);
-            var values = _courseService.GetAll().Where(x => x.InstructorId == id).ToList();
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            ViewBag.courseCount = _courseService.GetAll().Count(x=>x.AppUserId==user.Id);
+            var values = _courseService.GetAll().Where(x => x.AppUserId == user.Id).ToList();
             return View(values);
         }
     }
