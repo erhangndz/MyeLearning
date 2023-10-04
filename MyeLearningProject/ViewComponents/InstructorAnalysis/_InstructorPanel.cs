@@ -28,7 +28,8 @@ namespace MyeLearningProject.ViewComponents.InstructorAnalysis
             var courseId = _courseService.GetAll().Where(x => x.AppUserId == user.Id).Select(x => x.CourseId).ToList();
 
             ViewBag.commentCount = _commentService.GetAll().Where(x => courseId.Contains(x.CourseId)).Count();
-
+            var studentList = _userManager.GetUsersInRoleAsync("Student").Result;
+            ViewBag.studentCount= studentList.Count();
             ViewBag.image = user.Image;
             ViewBag.name = user.NameSurname;
 

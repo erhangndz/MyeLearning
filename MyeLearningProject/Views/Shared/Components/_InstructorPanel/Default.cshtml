@@ -8,13 +8,13 @@
             <div class="pro-img"><img src="@ViewBag.image" alt="user" /></div>
             <h3 class="m-b-0">@ViewBag.name</h3>
             <p>Eğitmen</p>
-            <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Takip Et</a>
+            <a href="/InstructorProfile/Index" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Profilim</a>
             <div class="row text-center m-t-20">
                 <div class="col-lg-4 col-md-4 m-t-20">
                 <h3 class="m-b-0 font-light">@ViewBag.courseCount</h3><small>Kurs Sayısı</small>
                 </div>
                 <div class="col-lg-4 col-md-4 m-t-20">
-                    <h3 class="m-b-0 font-light">3469</h3><small>Öğrencileri</small>
+                <h3 class="m-b-0 font-light">@ViewBag.studentCount</h3><small>Öğrenci Sayısı</small>
                 </div>
                 <div class="col-lg-4 col-md-4 m-t-20">
                 <h3 class="m-b-0 font-light">@ViewBag.commentCount</h3><small>Yorum Sayısı</small>

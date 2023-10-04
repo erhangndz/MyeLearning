@@ -28,7 +28,7 @@ namespace Business.Concrete
         public List<Comment> GetAll()
         {
             Context context = new Context();
-            return  context.Comments.Include(x=>x.Student).Include(x=>x.Course).ToList();
+            return  context.Comments.Include(x=>x.AppUser).Include(x=>x.Course).ToList();
         }
 
         public Comment GetById(int id)

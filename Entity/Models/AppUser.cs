@@ -13,5 +13,6 @@ namespace Entity.Models
         public string? Image { get; set; }
         public List<Review> Reviews { get; set; }
         public List<Course> Courses { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }
