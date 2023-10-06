@@ -1,14 +1,13 @@
 ﻿@using Entity.Models;
 @model Course
-
 @{
-    ViewData["Title"] = "AddCourse";
+    ViewData["Title"] = "EditCourse";
     Layout = "~/Views/Shared/_InstructorLayout.cshtml";
 }
 
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor m-b-0 m-t-0">Kurs Ekleme Sayfası</h3>
+        <h3 class="text-themecolor m-b-0 m-t-0">Kurs Düzenleme Sayfası</h3>
 
     </div>
 
@@ -20,7 +19,7 @@
 
 
             <form method="post">
-
+                <input type="hidden" asp-for="CourseId" />
                 <label>Kurs Adı</label>
                 <br />
                 <input type="text" asp-for="CourseName" class="form-control" />
@@ -56,4 +55,5 @@
         </div>
     </div>
 </div>
+
 

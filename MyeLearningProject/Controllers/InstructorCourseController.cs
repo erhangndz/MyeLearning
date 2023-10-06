@@ -54,6 +54,8 @@ namespace MyeLearningProject.Controllers
         [HttpPost]
         public IActionResult EditCourse(Course course)
         {
+            var user = _userManager.FindByNameAsync(User.Identity.Name).Result;
+            course.AppUserId = user.Id;
             _courseService.Update(course);
             return RedirectToAction("Index");
         }
