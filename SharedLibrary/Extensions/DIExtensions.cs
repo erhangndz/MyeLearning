@@ -40,6 +40,7 @@ namespace SharedLibrary.Extensions
 				_.LoginPath = new PathString("/Login/Index");
 				_.AccessDeniedPath = new PathString("/ErrorPage/AccessDenied/");
 				_.LogoutPath = new PathString("/Account/Logout");
+				
 
 
 			});	

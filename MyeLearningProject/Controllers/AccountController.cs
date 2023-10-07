@@ -95,7 +95,7 @@ namespace MyeLearningProject.Controllers
 			var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
 			if (result.Succeeded)
 			{
-				return RedirectToAction("Index", "Category");
+				return RedirectToAction("Index", "StudentCourse");
 			}
 			else
 			{

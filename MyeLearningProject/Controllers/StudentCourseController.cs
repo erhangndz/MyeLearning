@@ -11,11 +11,13 @@ namespace MyeLearningProject.Controllers
     {
         private readonly ICourseService _courseService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IGenericService<WatchList> _watchListService;
 
-        public StudentCourseController(ICourseService courseService, UserManager<AppUser> userManager)
+        public StudentCourseController(ICourseService courseService, UserManager<AppUser> userManager, IGenericService<WatchList> watchListService)
         {
             _courseService = courseService;
             _userManager = userManager;
+            _watchListService = watchListService;
         }
         public async Task<IActionResult> Index()
         {
@@ -24,12 +26,15 @@ namespace MyeLearningProject.Controllers
             return View(values);
         }
 
-        public IActionResult WatchCourse(int id)
+        public IActionResult WatchCourse(int id,string name)
         {
-            return View();
+            var values = _watchListService.GetList().Where(x=>x.CourseID==id).ToList();
+
+            ViewBag.courseName = name;
+            return View(values);
         }
     }
 }
 
-//< iframe width = "560" height = "315" src = "https://www.youtube.com/embed/VnfpRjs7j7E?si=81aLjZ9h4T1I95Z1" title = "YouTube video player" frameborder = "0" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></ iframe >
+
    

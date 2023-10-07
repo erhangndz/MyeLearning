@@ -1,0 +1,31 @@
+﻿@using Entity.Models;
+@model List<WatchList>
+@{
+    ViewData["Title"] = "WatchCourse";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Kursu İzle </h3>
+
+    </div>
+    <br />
+        <div class="card-header">
+            <h3>@ViewBag.courseName</h3>
+        </div>
+
+</div>  
+
+<div class="row col-lg-6 text-center">
+    @foreach (var item in Model)
+    {
+        <div class="mt-4 text-center">
+        <br />
+        <iframe width = "560" height = "315" src = "@item.VideoUrl" title = "YouTube video player" frameborder = "0" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe >
+        <br />
+        <hr />
+        </div>
+    }
+
+</div>
