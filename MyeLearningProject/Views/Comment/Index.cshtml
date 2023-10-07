@@ -1,8 +1,22 @@
-﻿
+﻿@using Entity.Models;
+@model Comment
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Kursa Yorum Yap</h3>
 
+    </div>
 
+</div>
+
+<form method="post">
+    <label>Yorumunuz:</label>
+    <textarea asp-for="CommentText" class="form-control" rows="8"></textarea>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+</form>

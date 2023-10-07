@@ -37,9 +37,15 @@ namespace MyeLearningProject.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(Comment comment)
+        public async Task<IActionResult> Index(Comment comment,int id)
         {
+            
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            comment.Status = true;
+            comment.CourseId = id;
+            comment.AppUserId = user.Id;
+            _commentService.Insert(comment);
+            return RedirectToAction("Index", "StudentCourse");
 
 
         }
