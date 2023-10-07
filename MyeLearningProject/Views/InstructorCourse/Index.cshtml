@@ -56,6 +56,7 @@
                                 <td>
                                     <button onclick="deleteMyCourse(@item.CourseId)" type="submit" class="btn btn-outline-danger"><i class='mdi mdi-delete'></i>Sil</button>
                                     <a asp-action="EditCourse" asp-route-id="@item.CourseId" class="btn btn-outline-primary"><i class='mdi mdi-pencil'></i>Düzenle</a>
+                                    <a asp-action="AddVideo" asp-route-id="@item.CourseId" asp-route-name="@item.CourseName" class="btn btn-outline-primary"><i class='mdi mdi-play'></i>Video Ekle</a>
                                 </td>
 
                             </tr>

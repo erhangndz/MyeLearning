@@ -7,7 +7,7 @@
             @foreach (var item in Model)
             {
                 <div class="sl-item">
-                    <div class="sl-left"> <img src="@item.AppUser.Image" alt="user" class="img-circle"> </div>
+                    <div class="sl-left"> <img src="~/userimages/@item.AppUser.Image" alt="user" class="img-circle"> </div>
                     <div class="sl-right">
                         <div>
                             <a href="#" class="link">@item.AppUser.NameSurname </a> <span class="sl-date">@item.CommentDate.ToString("dd-MMM-yyyy")</span>

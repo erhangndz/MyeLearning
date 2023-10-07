@@ -13,12 +13,14 @@ namespace MyeLearningProject.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly ICourseService _courseService;
         private readonly IGenericService<Category> _categoryService;
+        private readonly IGenericService<WatchList> _watchListService;
 
-        public InstructorCourseController(UserManager<AppUser> userManager, ICourseService courseService, IGenericService<Category> categoryService)
+        public InstructorCourseController(UserManager<AppUser> userManager, ICourseService courseService, IGenericService<Category> categoryService, IGenericService<WatchList> watchListService)
         {
             _userManager = userManager;
             _courseService = courseService;
             _categoryService = categoryService;
+            _watchListService = watchListService;
         }
 
         public async Task<IActionResult> Index()
@@ -83,6 +85,21 @@ namespace MyeLearningProject.Controllers
             course.AppUserId = user.Id;
             course.Status = true;
             _courseService.Insert(course);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult AddVideo(int id,string name)
+        {
+            ViewBag.id = id;
+            ViewBag.courseName=name;
+            var values = _watchListService.GetList().Where(x=>x.CourseID == id).ToList();
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult AddVideo(WatchList watchList)
+        {
+            _watchListService.Insert(watchList);
             return RedirectToAction("Index");
         }
     }

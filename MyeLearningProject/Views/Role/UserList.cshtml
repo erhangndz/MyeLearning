@@ -1,0 +1,53 @@
+﻿@using Entity.Models;
+@model List<AppUser>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Kayıtlı Kullanıcı Listesi</h3>
+
+    </div>
+
+</div>
+
+@{
+    int count = 0;
+}
+
+@if (Model.Any())
+{
+
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Ad Soyad</th>
+            <th>Kullanıcı Adı</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+
+            <tr>
+                <td>@count</td>
+                <td>@item.NameSurname</td>
+                <td>@item.UserName</td>
+                <td>
+                    
+
+                        <a asp-action="AssignRole" asp-route-id="@item.Id" class="btn btn-outline-primary">Rol Ata</a>
+
+
+               
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p class="alert alert-warning">Herhangi Bir Kullanıcı Bulunamadı</p>
+}

@@ -1,0 +1,47 @@
+﻿@using Entity.Models;
+@model List<WatchList>
+@{
+    ViewData["Title"] = "AddVideo";
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+}
+@{
+    int count = 0;
+}
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Kursun Videoları </h3>
+
+    </div>
+    <br />
+    <div class="card-header">
+        <h3>@ViewBag.courseName</h3>
+    </div>
+
+</div>
+
+<div class="row col-lg-6 text-center">
+    @foreach (var item in Model)
+    {
+        count++;
+        <div class="mt-4 text-center">
+            <br />
+            <iframe width="560" height="315" src="@item.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <br />
+            <hr />
+        </div>
+    }
+
+</div>
+
+
+<form method="post">
+    <input type="hidden" name="CourseID" value="@ViewBag.id"/>
+    <label>Yeni Video Embed Url Linki</label>
+    <input type="text" name="VideoUrl" class="form-control" />
+    <input type="hidden" name="LessonNumber" value="@count+1" />
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-outline-primary">Videoyu Kaydet</button>
+</form>
+

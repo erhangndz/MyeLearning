@@ -4,7 +4,9 @@
     ViewData["Title"] = "WatchCourse";
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
-
+@{
+    int count = 0;
+}
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
         <h3 class="text-themecolor m-b-0 m-t-0">Kursu İzle </h3>
@@ -17,15 +19,28 @@
 
 </div>  
 
-<div class="row col-lg-6 text-center">
-    @foreach (var item in Model)
-    {
-        <div class="mt-4 text-center">
-        <br />
-        <iframe width = "560" height = "315" src = "@item.VideoUrl" title = "YouTube video player" frameborder = "0" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe >
-        <br />
-        <hr />
-        </div>
-    }
+@if (Model.Any())
+{
 
-</div>
+    <div class="row col-lg-6 text-center">
+        @foreach (var item in Model)
+        {
+            count++;
+            <div class="mt-4 text-center">
+                <br />
+                <h3><strong>@count</strong></h3>
+                <iframe width = "560" height = "315" src = "@item.VideoUrl" title = "YouTube video player" frameborder = "0" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe >
+                <br />
+                <hr />
+            </div>
+        }
+
+    </div>
+}
+else
+{
+
+    <div class="alert alert-warning">
+         Bu kursa ait hiçbir video bulunamadı!
+    </div>
+}
