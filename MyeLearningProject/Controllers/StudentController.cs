@@ -1,5 +1,6 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.Controllers
@@ -7,33 +8,18 @@ namespace MyeLearningProject.Controllers
     public class StudentController : Controller
     {
         private readonly IGenericService<Student> _studentService;
-        public StudentController(IGenericService<Student> studentService)
+        private readonly UserManager<AppUser> _userManager;
+        public StudentController(IGenericService<Student> studentService, UserManager<AppUser> userManager)
         {
             _studentService = studentService;
+            _userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var values = _studentService.GetList();
+            var values = await _userManager.GetUsersInRoleAsync("Student");
             return View(values);
         }
 
-        public IActionResult DeleteStudent(int id)
-        {
-            _studentService.Delete(id);
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public IActionResult AddStudent()
-        {
-            return View();
-
-        }
-        [HttpPost]
-        public IActionResult AddStudent(Student student)
-        {
-            _studentService.Insert(student);
-            return RedirectToAction("Index");
-        }
+        
     }
 }

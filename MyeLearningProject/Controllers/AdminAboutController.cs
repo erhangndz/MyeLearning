@@ -1,9 +1,11 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyeLearningProject.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminAboutController : Controller
     {
         IGenericService<AboutUs> _aboutUsService;

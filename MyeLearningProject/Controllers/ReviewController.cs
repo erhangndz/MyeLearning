@@ -1,12 +1,13 @@
 ﻿using Business.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MyeLearningProject.Controllers
 {
-    
+    [Authorize(Roles = "Student")]
     public class ReviewController : Controller
     {
         private readonly IReviewService _reviewService;

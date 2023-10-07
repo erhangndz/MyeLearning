@@ -1,0 +1,51 @@
+﻿@model UserEditViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Profil Bilgileri Güncelleme Sayfası</h3>
+
+    </div>
+
+</div>
+<br />
+<br />
+<div class="card pull-up ecom-card-1 bg-white container">
+    <form asp-action="Index" method="post" enctype="multipart/form-data">
+        <div class="text-center align-text-center justify-content-center">
+            <img src="~/userimages/@Html.DisplayFor(x=>x.ImageURL)" style="width:150px;height:150px" />
+            <br />
+            <label>Profil Resmi</label>
+        </div>
+        <br /><br />
+
+        <label>Adınız Soyadınız</label>
+        @Html.TextBoxFor(x=>x.NameSurname,new{@class="form-control"})
+        <br />
+        <label>Mail Adresiniz</label>
+        @Html.TextBoxFor(x=>x.Email,new{@class="form-control"})
+        <br />
+        <label> Telefon Numaranız</label>
+        @Html.TextBoxFor(x=>x.PhoneNumber,new{@class="form-control"})
+        <br />
+        <label> Şifreniz</label>
+        <input type="password" asp-for="Password" class="form-control" />
+        <br />
+        <label> Şifre Tekrar</label>
+        <input type="password" asp-for="ConfirmPassword" class="form-control" />
+        <br />
+
+        <div class="form-group">
+            <label>Profil Resmi Seçin</label>
+            <input type="file" asp-for="Image" />
+            <br />
+        </div>
+        <br />
+        <button class="btn btn-primary">Bilgileri Güncelle</button>
+    </form>
+
+</div>
+

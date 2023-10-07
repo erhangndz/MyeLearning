@@ -1,11 +1,13 @@
 ﻿using Business.Interfaces;
 using DataAccess.Concrete;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MyeLearningProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminCourseController : Controller
     {
         private readonly ICourseService _courseService;

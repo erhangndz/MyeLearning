@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="ViewComponents\DefaultLayout\" />
+    <Folder Include="wwwroot\userimages\" />
   </ItemGroup>
 
   <ItemGroup>

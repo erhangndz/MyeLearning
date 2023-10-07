@@ -1,11 +1,13 @@
 ﻿using Business.Interfaces;
 using DataAccess.Interfaces;
 using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace MyeLearningProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private readonly IGenericService<Category> _categoryService;

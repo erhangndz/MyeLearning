@@ -1,5 +1,5 @@
 ﻿@using Entity.Models;
-@model List<Student>
+@model List<AppUser>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -39,7 +39,8 @@ else
                                 <th>#</th>
                                 <th>Ad Soyad</th>
                                 <th>Email</th>
-                                <th></th>
+                                <th>Telefon</th>
+                            
 
                             </tr>
                         </thead>
@@ -50,12 +51,10 @@ else
 
                                 <tr>
                                     <td>@count</td>
-                                    <td>@item.Name @item.Surname</td>
+                                    <td>@item.NameSurname </td>
                                     <td>@item.Email</td>
-                                    <td>
-                                        <button onclick="deleteStudent(@item.StudentID)" type="submit" class="btn btn-outline-danger"><i class='mdi mdi-delete'></i>Sil</button>
-                                        <a asp-action="EditStudent" asp-route-id="@item.StudentID" class="btn btn-outline-primary"><i class='mdi mdi-pencil'></i>Düzenle</a>
-                                    </td>
+                                    <td>@item.PhoneNumber</td>
+                                    
 
                                 </tr>
                             }
@@ -67,24 +66,5 @@ else
        
     </div>
 }
-<div class="col-lg-12">
-<a href="/Student/AddStudent" class="btn btn-outline-primary">Yeni Öğrenci Ekle</a>
-</div>
 
-<script>
-    function deleteStudent(id) {
-        Swal.fire({
 
-            title: 'Silmek istediğinize emin misiniz?',
-            text: 'Bu öğeyi silerseniz geri alamazsınız!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sil',
-            cancelButtonText: 'İptal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "/Student/DeleteStudent?id=" + id; // Yönlendirilecek URL'yi buraya yazın
-            }
-        });
-    }
-</script>

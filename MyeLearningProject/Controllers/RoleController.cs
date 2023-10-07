@@ -1,10 +1,12 @@
 ﻿using Entity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyeLearningProject.Models;
 
 namespace MyeLearningProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
