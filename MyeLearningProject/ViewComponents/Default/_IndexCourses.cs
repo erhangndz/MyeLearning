@@ -18,10 +18,16 @@ namespace MyeLearningProject.ViewComponents.Default
 
 		public IViewComponentResult Invoke()
         {
-            ViewBag.course2AvgScore = _reviewService.GetList().Where(x => x.CourseId == 2).Average(x => x.Score).ToString("0.#");
-            ViewBag.course3AvgScore = _reviewService.GetList().Where(x => x.CourseId == 3).Average(x => x.Score).ToString("0.#");
-            ViewBag.course4AvgScore = _reviewService.GetList().Where(x => x.CourseId == 4).Average(x => x.Score).ToString("0.#");
-            ViewBag.course8AvgScore = _reviewService.GetList().Where(x => x.CourseId == 8).Average(x => x.Score).ToString("0.#");
+            int maxCourseId = _courseService.GetList().Max(x => x.CourseId);
+            ViewBag.maxCourseId = maxCourseId;
+            ViewBag.course2 = _reviewService.GetList().Where(x => x.CourseId == 2).Average(x => x.Score).ToString("0.#");
+            ViewBag.course3 = _reviewService.GetList().Where(x => x.CourseId == 3).Average(x => x.Score).ToString("0.#");
+            ViewBag.course4 = _reviewService.GetList().Where(x => x.CourseId == 4).Average(x => x.Score).ToString("0.#");
+            ViewBag.course8 = _reviewService.GetList().Where(x => x.CourseId == 8).Average(x => x.Score).ToString("0.#");
+            ViewBag.course9 = _reviewService.GetList().Where(x => x.CourseId == 9).Average(x => x.Score).ToString("0.#");
+           
+            
+            
             var values = _courseService.GetAll().TakeLast(6).ToList();
             return View(values);
         }
