@@ -2,6 +2,7 @@
 using DataAccess.Concrete;
 using Entity.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,16 +15,18 @@ namespace MyeLearningProject.Controllers
         private readonly IGenericService<Category> _categoryService;
         private readonly IGenericService<Instructor> _instructorService;
         private readonly IReviewService _reviewService;
+        private readonly UserManager<AppUser> _userManager;
 
-		public AdminCourseController(ICourseService courseService, IGenericService<Category> categoryService, IGenericService<Instructor> instructorService, IReviewService reviewService)
-		{
-			_courseService = courseService;
-			_categoryService = categoryService;
-			_instructorService = instructorService;
-			_reviewService = reviewService;
-		}
+        public AdminCourseController(ICourseService courseService, IGenericService<Category> categoryService, IGenericService<Instructor> instructorService, IReviewService reviewService, UserManager<AppUser> userManager)
+        {
+            _courseService = courseService;
+            _categoryService = categoryService;
+            _instructorService = instructorService;
+            _reviewService = reviewService;
+            _userManager = userManager;
+        }
 
-		public IActionResult Index()
+        public IActionResult Index()
         {
           
            var values= _courseService.GetAll();
@@ -37,10 +40,10 @@ namespace MyeLearningProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCourse(int id)
+        public async Task<IActionResult> EditCourse(int id)
         {
             var cat = _categoryService.GetList();
-            var inst = _instructorService.GetList();
+            var inst = await _userManager.GetUsersInRoleAsync("Instructor");
             List<SelectListItem> category = (from x in cat
                                              select new SelectListItem
                                              {
@@ -52,8 +55,8 @@ namespace MyeLearningProject.Controllers
             List<SelectListItem> instructor = (from x in inst
                                                select new SelectListItem
                                                {
-                                                   Text = x.Name + " " + x.Surname,
-                                                   Value = x.InstructorId.ToString()
+                                                   Text = x.NameSurname,
+                                                   Value = x.Id.ToString()
                                                }).ToList();
             ViewBag.instructor = instructor;
             var values = _courseService.GetById(id);
@@ -66,10 +69,10 @@ namespace MyeLearningProject.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public IActionResult AddCourse()
+        public async Task<IActionResult> AddCourse()
         {
             var cat= _categoryService.GetList();
-            var inst = _instructorService.GetList();
+            var inst = await _userManager.GetUsersInRoleAsync("Instructor");
             List<SelectListItem> category = (from x in cat
                                              select new SelectListItem
                                              {
@@ -81,8 +84,8 @@ namespace MyeLearningProject.Controllers
             List<SelectListItem> instructor = (from x in inst
                                              select new SelectListItem
                                              {
-                                                 Text = x.Name + " " + x.Surname,
-                                                 Value = x.InstructorId.ToString()
+                                                 Text = x.NameSurname,
+                                                 Value = x.Id.ToString()
                                              }).ToList();
             ViewBag.instructor=instructor;
             return View();

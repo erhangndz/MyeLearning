@@ -1,7 +1,7 @@
-﻿@using Entity.Models;
+﻿
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
-@model IPagedList<Course>
+@model IPagedList<CourseDto>
 @{
     ViewData["Title"] = "Kurslarımız";
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
@@ -28,9 +28,9 @@
 
 
 
-@{
-    var score = "";
-}
+
+   
+
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -46,9 +46,9 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="course-item bg-light">
                         <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="@item.Image" alt="">
+                            <img class="img-fluid" src="@item.Image" style="width:410px;height:270px" alt="">
                             <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">@item.Category.CategoryName</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">@item.CategoryName</a>
                                 <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Şimdi Katıl</a>
                             </div>
                         </div>
@@ -59,14 +59,19 @@
                         </div>
                         <div class="text-center p-4 pb-0">
 
-                            @if (item.CourseId == 2) { score = ViewBag.course2AvgScore; }
-                            @if (item.CourseId == 3) { score = ViewBag.course3AvgScore; }
-                            @if (item.CourseId == 4) { score = ViewBag.course4AvgScore; }
-                            @if (item.CourseId == 8) { score = ViewBag.course8AvgScore; }
-                            <h5 class="mb-4">Puanı: @score</h5>
+                            @if (item.AvgReviewScore != null)
+                            {
+                                <h5 class="mb-4">Puanı: @item.AvgReviewScore</h5>
+                            }
+                            else
+                            {
+                                <h5 class="mb-4">Puanı: Hiç Değerlendirilmemiş</h5>
+                            }
+
+                            
                         </div>
                         <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>@item.AppUser.NameSurname</small>
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>@item.NameSurname</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>@item.CourseTime Saat</small>
                             <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>@item.Quota Öğrenci</small>
                         </div>
